@@ -1,17 +1,32 @@
 // _rfc
-import Link from "next/link";
+// import Head from "next/head";
+// import Link from "next/link";
+import Layout from "../components/Layout";
 
 export default function HomePage() {
   return (
-    <div>
+    <Layout>
       <h1>Home Page</h1>
-      <a href='/about'>About Page (HTML a tag)</a>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates,
+        rem distinctio! Et at non sed, vero enim eaque porro in necessitatibus
+        debitis sequi inventore voluptatem commodi quidem perspiciatis, dolore
+        assumenda, deleniti sint! Maxime incidunt sunt obcaecati quos. Eum ea
+        atque assumenda ipsa! Laborum voluptate vel veritatis facere!
+        Voluptates, distinctio sequi?
+      </p>
+      {/* <Head>
+        <title>DJ Events</title>
+        <meta name='description' content='Welcome to DJ Events' />
+      </Head> */}
+      {/* <a href='/about'>About Page (HTML a tag)</a>
       <br />
-      <Link href='/about'>About Page (Next.js Link)</Link>
-    </div>
+      <Link href='/about'>About Page (Next.js Link)</Link> */}
+    </Layout>
   );
 }
 
+// // [ORIGINAL NEXT.JS JSX]
 // import Head from 'next/head'
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
