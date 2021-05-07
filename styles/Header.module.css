@@ -58,3 +58,16 @@
     margin: 20px 0;
   }
 }
+
+/* ENV */
+.envDev,
+.envProd {
+  border: 2px solid;
+  padding: 0 0.25rem;
+}
+.envDev {
+  color: deeppink;
+}
+.envProd {
+  color: green;
+}

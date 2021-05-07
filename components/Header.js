@@ -10,6 +10,14 @@ export default function Header() {
           <a>DJ Events</a>
         </Link>
       </div>
+      <div>
+        {process.env.NODE_ENV === "development" && (
+          <span className={styles.envDev}>✘ DEV</span>
+        )}
+        {process.env.NODE_ENV === "production" && (
+          <span className={styles.envProd}>✔ PROD</span>
+        )}
+      </div>
       <nav>
         <ul>
           <li>
