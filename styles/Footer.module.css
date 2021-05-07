@@ -1,10 +1,16 @@
 .footer {
-  margin: 100px 0 40px;
+  /* margin: 100px 0 40px; */
   text-align: center;
-  border: 0.25rem solid rgb(220, 20, 60, 0.25);
+  border-top: 0.25rem solid rgb(220, 20, 60, 0.125);
+  /* border-bottom: 0.25rem solid rgb(220, 20, 60, 0.125); */
+  background: rgb(220, 20, 60, 0.05);
+  height: 80px;
+  /* ISSUE HEIGHT */
+  display: inline-block;
+  width: 100%;
 }
 
 .footer p {
   margin: 5px 0;
-  border: 0.125rem solid rgb(220, 20, 60, 0.25);
+  /* border: 0.125rem solid rgb(220, 20, 60, 0.25); */
 }
