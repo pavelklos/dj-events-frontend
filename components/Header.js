@@ -32,6 +32,16 @@ export default function Header() {
             </Link>
           </li>
           <li>
+            <Link href='/api/events'>
+              <a target='_blanket'>API (events)</a>
+            </Link>
+          </li>
+          <li>
+            <Link href='/api/events/soul-kitchen-party'>
+              <a target='_blanket'>API (event)</a>
+            </Link>
+          </li>
+          <li>
             <Link href='/test'>
               <a>404</a>
             </Link>
