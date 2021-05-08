@@ -30,6 +30,11 @@ export default function Header() {
               <a>Add Event</a>
             </Link>
           </li>
+          <li>
+            <Link href='/test'>
+              <a>404</a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

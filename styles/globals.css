@@ -10,6 +10,9 @@ html,
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.8;
+  /* 16 * 0.0625 = 1px */
+  /* letter-spacing: 0.0625em; */
+  letter-spacing: -0.0125em;
 }
 
 a {
