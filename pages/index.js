@@ -3,8 +3,12 @@
 // import Link from "next/link";
 // import Layout from "../components/Layout";
 import Layout from "@/components/Layout";
+import { API_URL } from "@/config/index";
 
-export default function HomePage() {
+export default function HomePage(props) {
+  const { events } = props;
+  // console.log(events);
+
   return (
     <Layout>
       <h1>Home Page</h1>
@@ -16,6 +20,15 @@ export default function HomePage() {
         atque assumenda ipsa! Laborum voluptate vel veritatis facere!
         Voluptates, distinctio sequi?
       </p>
+      <hr />
+      <h1>Upcoming Events</h1>
+      {events.map((event) => {
+        return (
+          <h2 key={event.id}>
+            [{event.id}] {event.name}
+          </h2>
+        );
+      })}
       {/* <Head>
         <title>DJ Events</title>
         <meta name='description' content='Welcome to DJ Events' />
@@ -25,6 +38,24 @@ export default function HomePage() {
       <Link href='/about'>About Page (Next.js Link)</Link> */}
     </Layout>
   );
+}
+
+// export async function getStaticProps() {
+export async function getServerSideProps(context) {
+  // console.log(context); // req, res, query
+
+  // const url = `/api/events`;
+  const url = `${API_URL}/api/events`;
+  const res = await fetch(url);
+  const data = await res.json();
+  // console.log(data);
+
+  return {
+    props: {
+      events: data,
+    },
+    // revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
+  };
 }
 
 // // [ORIGINAL NEXT.JS JSX]
