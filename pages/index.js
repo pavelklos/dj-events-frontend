@@ -1,7 +1,8 @@
 // _rfc
 // import Head from "next/head";
-// import Link from "next/link";
+import Link from "next/link";
 // import Layout from "../components/Layout";
+import EventItem from "@/components/EventItem";
 import Layout from "@/components/Layout";
 import { API_URL } from "@/config/index";
 
@@ -22,13 +23,17 @@ export default function HomePage(props) {
       </p>
       <hr />
       <h1>Upcoming Events</h1>
-      {events.map((event) => {
-        return (
-          <h2 key={event.id}>
-            [{event.id}] {event.name}
-          </h2>
-        );
-      })}
+      {events.length === 0 && <h3>No events to show</h3>}
+      {events.map((event) => (
+        <EventItem key={event.id} event={event} />
+      ))}
+
+      {events.length > 0 && (
+        <Link href='/events'>
+          <a className='btn-secondary'>View All Events</a>
+        </Link>
+      )}
+
       {/* <Head>
         <title>DJ Events</title>
         <meta name='description' content='Welcome to DJ Events' />
@@ -40,8 +45,8 @@ export default function HomePage(props) {
   );
 }
 
-// export async function getStaticProps() {
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
+  // export async function getServerSideProps(context) {
   // console.log(context); // req, res, query
 
   // const url = `/api/events`;
@@ -52,9 +57,9 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      events: data,
+      events: data.slice(0, 3),
     },
-    // revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
+    revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
   };
 }
 

@@ -11,7 +11,7 @@ export default function EventPage() {
     <Layout title={`DJ Event : ${router.query.slug}`}>
       <h1>Event Detail</h1>
       <h3>{router.query.slug}</h3>
-      <button onClick={() => router.push("/")}>
+      <button onClick={() => router.push("/")} className='btn'>
         Click (push : redirect to home page)
       </button>
     </Layout>
