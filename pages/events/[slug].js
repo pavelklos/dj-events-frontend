@@ -73,7 +73,7 @@ export default function EventPage(props) {
 //   // console.log(query);
 
 //   // const res = await fetch(`${API_URL}/api/events/${slug}`);
-//   const res = await fetch(`${API_URL}/events/${slug}`);
+//   const res = await fetch(`${API_URL}/events?slug=${slug}`);
 //   const data = await res.json(); // events : array
 //   // console.log(data);
 
