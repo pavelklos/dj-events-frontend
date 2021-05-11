@@ -67,25 +67,10 @@ export default function EventPage(props) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const { query } = context;
-//   const { slug } = query;
-//   // console.log(query);
-
-//   // const res = await fetch(`${API_URL}/api/events/${slug}`);
-//   const res = await fetch(`${API_URL}/events?slug=${slug}`);
-//   const data = await res.json(); // events : array
-//   // console.log(data);
-
-//   return {
-//     props: { event: data[0] },
-//   };
-// }
-
-export async function getStaticProps(context) {
-  const { params } = context;
-  const { slug } = params;
-  // console.log(params);
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const { slug } = query;
+  // console.log(query);
 
   // const res = await fetch(`${API_URL}/api/events/${slug}`);
   const res = await fetch(`${API_URL}/events?slug=${slug}`);
@@ -94,23 +79,38 @@ export async function getStaticProps(context) {
 
   return {
     props: { event: data[0] },
-    revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
   };
 }
 
-export async function getStaticPaths() {
-  // const res = await fetch(`${API_URL}/api/events`);
-  const res = await fetch(`${API_URL}/events`);
-  const data = await res.json();
-  // console.log(data);
-  // { params: { slug: 'slug' } },
-  const paths = data.map((event) => ({ params: { slug: event.slug } }));
-  // console.log(paths);
+// export async function getStaticProps(context) {
+//   const { params } = context;
+//   const { slug } = params;
+//   // console.log(params);
 
-  return {
-    paths: paths,
-    fallback: true,
-    // false -> 404
-    // true -> IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
-  };
-}
+//   // const res = await fetch(`${API_URL}/api/events/${slug}`);
+//   const res = await fetch(`${API_URL}/events?slug=${slug}`);
+//   const data = await res.json(); // events : array
+//   // console.log(data);
+
+//   return {
+//     props: { event: data[0] },
+//     revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   // const res = await fetch(`${API_URL}/api/events`);
+//   const res = await fetch(`${API_URL}/events`);
+//   const data = await res.json();
+//   // console.log(data);
+//   // { params: { slug: 'slug' } },
+//   const paths = data.map((event) => ({ params: { slug: event.slug } }));
+//   // console.log(paths);
+
+//   return {
+//     paths: paths,
+//     fallback: true,
+//     // false -> 404
+//     // true -> IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
+//   };
+// }
