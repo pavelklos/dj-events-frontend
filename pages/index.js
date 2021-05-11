@@ -50,14 +50,16 @@ export async function getStaticProps() {
   // console.log(context); // req, res, query
 
   // const url = `/api/events`;
-  const url = `${API_URL}/api/events`;
+  // const url = `${API_URL}/api/events`;
+  const url = `${API_URL}/events?_sort=date:ASC&_limit=3`;
   const res = await fetch(url);
   const data = await res.json();
   // console.log(data);
 
   return {
     props: {
-      events: data.slice(0, 3),
+      // events: data.slice(0, 3),
+      events: data,
     },
     revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
   };

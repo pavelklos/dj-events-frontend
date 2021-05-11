@@ -32,13 +32,15 @@ export default function EventPage(props) {
           </a>
         </div>
         <span>
-          {event.date} at {event.time}
+          {/* {event.date} at {event.time} */}
+          {new Date(event.date).toLocaleDateString("en-US")} at {event.time}
         </span>
         <h1>{event.name}</h1>
         {event.image && (
           <div className={styles.image}>
             <Image
-              src={event.image}
+              // src={event.image}
+              src={event.image.formats.medium.url}
               width={960}
               height={600}
               objectFit='cover'
@@ -65,47 +67,50 @@ export default function EventPage(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { query } = context;
-  const { slug } = query;
-  // console.log(query);
+// export async function getServerSideProps(context) {
+//   const { query } = context;
+//   const { slug } = query;
+//   // console.log(query);
 
-  const res = await fetch(`${API_URL}/api/events/${slug}`);
-  const data = await res.json(); // events : array
-  // console.log(data);
-
-  return {
-    props: { event: data[0] },
-  };
-}
-
-// export async function getStaticProps(context) {
-//   const { params } = context;
-//   const { slug } = params;
-//   // console.log(params);
-
-//   const res = await fetch(`${API_URL}/api/events/${slug}`);
+//   // const res = await fetch(`${API_URL}/api/events/${slug}`);
+//   const res = await fetch(`${API_URL}/events/${slug}`);
 //   const data = await res.json(); // events : array
 //   // console.log(data);
 
 //   return {
 //     props: { event: data[0] },
-//     revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
 //   };
 // }
 
-// export async function getStaticPaths() {
-//   const res = await fetch(`${API_URL}/api/events`);
-//   const data = await res.json();
-//   // console.log(data);
-//   // { params: { slug: 'slug' } },
-//   const paths = data.map((event) => ({ params: { slug: event.slug } }));
-//   // console.log(paths);
+export async function getStaticProps(context) {
+  const { params } = context;
+  const { slug } = params;
+  // console.log(params);
 
-//   return {
-//     paths: paths,
-//     fallback: true,
-//     // false -> 404
-//     // true -> IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
-//   };
-// }
+  // const res = await fetch(`${API_URL}/api/events/${slug}`);
+  const res = await fetch(`${API_URL}/events?slug=${slug}`);
+  const data = await res.json(); // events : array
+  // console.log(data);
+
+  return {
+    props: { event: data[0] },
+    revalidate: 60, // 60 sec : IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
+  };
+}
+
+export async function getStaticPaths() {
+  // const res = await fetch(`${API_URL}/api/events`);
+  const res = await fetch(`${API_URL}/events`);
+  const data = await res.json();
+  // console.log(data);
+  // { params: { slug: 'slug' } },
+  const paths = data.map((event) => ({ params: { slug: event.slug } }));
+  // console.log(paths);
+
+  return {
+    paths: paths,
+    fallback: true,
+    // false -> 404
+    // true -> IF DATA WILL CHANGE -> NEW REQUEST (FETCH) TO GET NEW DATA
+  };
+}
