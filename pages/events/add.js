@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import Layout from "../../components/Layout";
 import Layout from "@/components/Layout";
 import { API_URL } from "@/config/index";
@@ -20,9 +22,33 @@ export default function AddEventPage() {
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    // console.log(values);
+
+    // Validation
+    const hasEmptyFields = Object.values(values).some(
+      (element) => element === ""
+    );
+    if (hasEmptyFields) {
+      // console.log("Please fill in all fields");
+      toast.error("Please fill in all fields");
+    }
+
+    // Strapi
+    const res = await fetch(`${API_URL}/events`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    if (!res.ok) {
+      toast.error("Something Went Wrong");
+    } else {
+      const data = await res.json(); // data = event
+      router.push(`/events/${data.slug}`);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -34,6 +60,7 @@ export default function AddEventPage() {
     <Layout title='Add New Event'>
       <Link href='/event'>Go Back</Link>
       <h1>Add Event Page</h1>
+      <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.grid}>
           <div>
@@ -97,7 +124,6 @@ export default function AddEventPage() {
             />
           </div>
         </div>
-
         <div>
           <label htmlFor='description'>Description</label>
           <textarea
@@ -108,7 +134,6 @@ export default function AddEventPage() {
             onChange={handleInputChange}
           />
         </div>
-
         <input type='submit' value='Add Event' className='btn' />
       </form>
     </Layout>
