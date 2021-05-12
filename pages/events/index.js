@@ -9,7 +9,7 @@ export default function EventsPage(props) {
 
   return (
     <Layout>
-      <h1>Events</h1>
+      <h1>Events ({events.length})</h1>
       {events.length === 0 && <h3>No events to show</h3>}
       {events.map((event) => (
         <EventItem key={event.id} event={event} />
