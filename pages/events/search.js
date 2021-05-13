@@ -48,6 +48,7 @@ export async function getServerSideProps(context) {
       ],
     },
   });
+  // console.log(query);
   const url = `${API_URL}/events?${query}`;
 
   const res = await fetch(url);
