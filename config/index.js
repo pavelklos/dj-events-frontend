@@ -6,3 +6,6 @@
 // http://localhost:1337/events?name_contains=kitchen
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337"; // NEXT_PUBLIC_
+
+// PAGINATION
+export const PER_PAGE = 5;
