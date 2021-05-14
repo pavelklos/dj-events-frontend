@@ -10,6 +10,7 @@ import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
 // import Layout from "../../components/Layout";
 import Layout from "@/components/Layout";
+import Modal from "@/components/Modal";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
@@ -28,6 +29,8 @@ export default function EditEventPage(props) {
   const [imagePreview, setImagePreview] = useState(
     event.image ? event.image.formats.thumbnail.url : null
   );
+
+  const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
 
@@ -155,11 +158,19 @@ export default function EditEventPage(props) {
           <p>No image uploaded</p>
         </div>
       )}
+
       <div>
-        <button className='btn-secondary'>
+        <button
+          className='btn-secondary btn-icon'
+          onClick={() => setShowModal(true)}
+        >
           <FaImage /> Set Image
         </button>
       </div>
+
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        IMAGE UPLOAD
+      </Modal>
     </Layout>
   );
 }
