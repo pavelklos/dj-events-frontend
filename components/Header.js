@@ -1,6 +1,6 @@
 // _rfc
 import Link from "next/link";
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import Search from "./Search";
 // import styles from "../styles/Header.module.css";
 import styles from "@/styles/Header.module.css";
@@ -22,7 +22,11 @@ export default function Header() {
           <a>DJ Events</a>
         </Link>
       </div>
-      <div>{user}</div>
+      <div>
+        <small className={user ? styles.in : styles.out}>
+          <FaUser /> {user}
+        </small>
+      </div>
       <div>
         {process.env.NODE_ENV === "development" && (
           <span className={styles.envDev}>✘ DEV</span>

@@ -68,9 +68,11 @@
   border-radius: 0.25rem;
   padding: 0 0.25rem;
 }
-.envDev {
+.envDev,
+.out {
   color: deeppink;
 }
-.envProd {
+.envProd,
+.in {
   color: green;
 }
