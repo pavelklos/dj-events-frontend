@@ -24,7 +24,7 @@ export default function Header() {
       </div>
       <div>
         <small className={user ? styles.in : styles.out}>
-          <FaUser /> {user}
+          <FaUser /> {user ? user.username : null}
         </small>
       </div>
       <div>
