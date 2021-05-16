@@ -202,7 +202,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       event: data,
-      cookie: cookie,
+      cookie: cookie ? cookie : null,
     },
   };
 }
