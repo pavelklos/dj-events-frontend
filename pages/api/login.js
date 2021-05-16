@@ -1,3 +1,4 @@
+import cookie from "cookie";
 import { API_URL } from "@/config/index";
 
 export default async (req, res) => {
@@ -19,8 +20,19 @@ export default async (req, res) => {
     });
     const strapiData = await strapiRes.json();
     if (strapiRes.ok) {
-      // @todo - Set cookie
       // console.log(strapiData.jwt);
+      // @todo - Set cookie
+      res.setHeader(
+        "Set-Cookie",
+        cookie.serialize("token", strapiData.jwt, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== "development", // false = development, true
+          maxAge: 60 * 60 * 24 * 7, // [1 week] = 60 sec * 60 min * 24 hours * 7 days
+          sameSite: "strict",
+          path: "/",
+        })
+      );
+
       // [200] OK
       res.status(200).json({ user: strapiData.user });
     } else {

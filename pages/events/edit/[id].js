@@ -17,6 +17,7 @@ import styles from "@/styles/Form.module.css";
 
 export default function EditEventPage(props) {
   const { event } = props;
+  const { cookie } = props;
   const [values, setValues] = useState({
     name: event.name,
     performers: event.performers,
@@ -80,6 +81,7 @@ export default function EditEventPage(props) {
   return (
     <Layout title='Add New Event'>
       <Link href='/event'>Go Back</Link>
+      <textarea rows='10' style={{ width: "100%" }} value={cookie} readOnly />
       <h1>Edit Event Page</h1>
       <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
@@ -186,9 +188,12 @@ export default function EditEventPage(props) {
 
 export async function getServerSideProps(context) {
   const { query, params } = context;
+  const { req } = context;
+  const cookie = req.headers.cookie;
   // const { id } = query;
   const { id } = params;
   // console.log(id);
+  // console.log(cookie);
 
   const res = await fetch(`${API_URL}/events/${id}`);
   const data = await res.json();
@@ -197,6 +202,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       event: data,
+      cookie: cookie,
     },
   };
 }
