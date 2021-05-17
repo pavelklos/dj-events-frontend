@@ -40,8 +40,6 @@ export default function EventMap(props) {
   // // Google Maps Geocoding API
   // Geocode.setApiKey = `${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`;
   // Geocode.setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY);
-  // Geocode.setApiKey = "AIzaSyCxIwHx6KgRqn8fy9EIMwZb9w50MXZDEO8";
-  // Geocode.setApiKey("AIzaSyCxIwHx6KgRqn8fy9EIMwZb9w50MXZDEO8");
 
   // // Set response language. Defaults to english.
   // Geocode.setLanguage("en");
