@@ -38,7 +38,7 @@ export default function EventPage(props) {
   return (
     <Layout title={`DJ Event : ${router.query.slug}`}>
       <div className={styles.event}>
-        <div className={styles.controls}>
+        {/* <div className={styles.controls}>
           <Link href={`/events/edit/${event.id}`}>
             <a>
               <FaPencilAlt /> Edit Event
@@ -47,7 +47,7 @@ export default function EventPage(props) {
           <a href='#' className={styles.delete} onClick={deleteEvent}>
             <FaTimes /> Delete Event
           </a>
-        </div>
+        </div> */}
         <span>
           {/* {event.date} at {event.time} */}
           {new Date(event.date).toLocaleDateString("en-US")} at {event.time}
