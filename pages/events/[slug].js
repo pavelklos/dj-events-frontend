@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { API_URL } from "@/config/index";
 // import Layout from "../../components/Layout";
 import Layout from "@/components/Layout";
+import EventMap from "@/components/EventMap";
 import styles from "@/styles/Event.module.css";
 
 export default function EventPage(props) {
@@ -71,7 +72,7 @@ export default function EventPage(props) {
         <p>{event.description}</p>
         <h3>Venue: {event.venue}</h3>
         <p>{event.address}</p>
-        <h1>MAP</h1>
+        <EventMap event={event}/>
         <Link href='/events'>
           <a className={styles.back}>{"<"} Go Back</a>
         </Link>
