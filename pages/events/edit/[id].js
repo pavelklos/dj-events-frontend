@@ -89,7 +89,7 @@ export default function EditEventPage(props) {
   return (
     <Layout title='Add New Event'>
       <Link href='/event'>Go Back</Link>
-      <textarea rows='10' style={{ width: "100%" }} value={cookie} readOnly />
+      {/* <textarea rows='10' style={{ width: "100%" }} value={cookie} readOnly /> */}
       <h1>Edit Event Page</h1>
       <ToastContainer />
       <form onSubmit={handleSubmit} className={styles.form}>
